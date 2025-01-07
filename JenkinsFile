@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Without docker') {
+            steps {
+                sh '''
+                echo 'Without docker'
+                ls -la
+                touch noContainer.txt
+                '''
+            }
+        }
+        stage('With docker') {
+            agent{
+                docker{
+                image 'node:18-alpine'
+                reuseNode true
+            }
+            }
+            steps {
+                sh '''
+                echo 'With docker'
+                ls -la
+                touch container.txt
+                '''
+            }
+        }
+    }
+}
