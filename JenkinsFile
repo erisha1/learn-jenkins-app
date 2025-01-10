@@ -11,6 +11,7 @@ pipeline {
             }
             steps {
                 sh '''
+                echo "building"
                     ls -la
                     touch noContainer.txt
                     node --version
@@ -38,7 +39,7 @@ pipeline {
     }
     post{
     always{
-    junit 'test-results/junit.xml'
+        junit 'test-results/junit.xml'
     }
     }
 }
