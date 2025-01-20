@@ -38,12 +38,13 @@ pipeline {
                 }
 
             }
-    }
     stage("Completed"){
-    step{
-        echo "Comleted run!"
-        }
+        steps{
+            echo "Comleted run!"
+            }
     }
+    }
+
     post{
     always{
         junit 'test-results/junit.xml'
